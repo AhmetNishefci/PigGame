@@ -12,10 +12,7 @@ const current1 = document.querySelector("#current--1");
 const player1 = document.querySelector(".player--0");
 const player2 = document.querySelector(".player--1");
 
-let currentScore = 0;
-let activePlayer = 0;
-let score = [0, 0];
-let playing = true;
+let currentScore, activePlayer, score, playing;
 
 const switchPlayer = () => {
   document.querySelector(`#current--${activePlayer}`).textContent = 0;
@@ -24,6 +21,24 @@ const switchPlayer = () => {
   player1.classList.toggle("player--active");
   player2.classList.toggle("player--active");
 };
+
+const restartGame = () => {
+  currentScore = 0;
+  activePlayer = 0;
+  score = [0, 0];
+  playing = true;
+
+  score0.textContent = 0;
+  score1.textContent = 0;
+  current0.textContent = 0;
+  current1.textContent = 0;
+  player1.classList.remove("player--winner");
+  player2.classList.remove("player--winner");
+  player1.classList.add("player--active");
+  player2.classList.remove("player--active");
+};
+
+restartGame();
 
 // Starting conditions
 score0.textContent = 0;
@@ -73,3 +88,5 @@ btnHold.addEventListener("click", () => {
     switchPlayer();
   }
 });
+
+btnNew.addEventListener("click", restartGame);
